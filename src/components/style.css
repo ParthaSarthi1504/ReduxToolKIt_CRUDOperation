@@ -14,7 +14,6 @@
 .linear-animation-right{
     animation-name: linear-right;
     animation-duration: 0.6s;
-    transform: translateX(300px);
 }
 @keyframes linear-right {
     0% {
@@ -24,7 +23,7 @@
         opacity: 0;
     }
     100% {
-      transform: translateX(440px);
+      transform: translateX(20%);
       opacity: 0;
     }
 }
