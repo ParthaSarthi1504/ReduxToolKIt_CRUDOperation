@@ -1,0 +1,31 @@
+.linear-animation{
+    animation-name: linear;
+    animation-duration: 0.3s;
+}
+@keyframes linear {
+    0% {
+      transform: translateX(-80px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+
+.linear-animation-right{
+    animation-name: linear-right;
+    animation-duration: 0.6s;
+    transform: translateX(300px);
+}
+@keyframes linear-right {
+    0% {
+      transform: translateX(0px);
+    }
+    70%{
+        opacity: 0;
+    }
+    100% {
+      transform: translateX(440px);
+      opacity: 0;
+    }
+}
+
