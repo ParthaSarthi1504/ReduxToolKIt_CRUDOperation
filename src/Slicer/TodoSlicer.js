@@ -1,9 +1,11 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
+let  existingTodos = JSON.parse(localStorage.getItem('yourTodos'));
+
 const TodoSlicer = createSlice({
     name: 'todos',
     initialState: {
-        todos: []
+        todos: existingTodos
     },
     reducers: {
         addTodo: (state,action) =>{

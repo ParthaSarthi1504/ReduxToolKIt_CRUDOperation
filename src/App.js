@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, memo} from 'react';
+import { useState, memo, useEffect} from 'react';
 import { useDispatch ,useSelector} from 'react-redux';
 import { addTodo } from './Slicer/TodoSlicer';
 import TodoList from './components/TotoList'
@@ -17,14 +17,20 @@ const App = () =>{
       alert('The input box is Empty')
     }
   }
+  // storing todoList into lovcal storage
+  useEffect(()=>{
+    localStorage.setItem("yourTodos",JSON.stringify(todoItems));
+  },[todoItems])
+
   return(
     <div className="min-h-full flex flex-col items-center font-mono">
-      <h1 className='font-bold text-[30px]  m-[20px] '>Todos Application</h1>
-      <div>
-        <input type='text' className='w-[500px] h-[35px] bg-slate-100  border-gray-200  border-1 rounded outline-none pl-3 text-black text-[17px] shadow-lg shadow-indigo-500/50' value={inputTodo} onChange={(e)=>setInputTodo(e.target.value)}/>
-        <button className='bg-blue-600 text-white font-medium text-[14px]  h-[35px] w-[80px] rounded ml-10' onClick={AddingTodo}>Add Todo</button>
+      <h1 className='font-bold text-[20px] m-[20px] sm:text-[25px] lg:text-[30px] 2xl:text-[30px]'>Todos Application</h1>
+      <div className='flex justify-center items-center flex-wrap w-[100%]'>
+        <input type='text' placeholder='Add Something...' className='w-[80%] h-[40px] pl-3 text-[17px] bg-slate-100 border-gray-200  border-1 rounded outline-none m-3 text-black shadow-lg shadow-indigo-500/50 sm:w-[350px] sm:h-[30px] sm:text-[15px] sm:pl-1 lg:w-[50%] lg:h-[43px] lg:text-[22px] lg:pl-3 2xl:w-[600px] 2xl:h-[40px] 2xl:pl-3' value={inputTodo} onChange={(e)=>setInputTodo(e.target.value)}/>
+        <button className=' hidden bg-blue-600 text-white font-semibold text-[17px] w-[90px] h-[43px] rounded ml-5 sm:hidden lg:flex lg:justify-center lg:items-center ' onClick={AddingTodo}>Add Todo</button>
+        <button className='bg-blue-600 text-white text-[30px] font-extrabold  h-[40px] w-[40px] m-3 flex justify-center items-center rounded sm:h-[30px] sm:w-[30px] sm:text-[30px] lg:hidden lg:w-[80px]' onClick={AddingTodo}>+</button>
       </div>
-      <ul className='mt-10 mb-[10] flex flex-col items-center duration-[300ms]'>
+      <ul className='mt-3 pb-5 w-[100%] flex flex-col items-center duration-[300ms] sm:mt-4 sm:mb-4 md:mt-6 md:pb-[7] lg:mt-8 lg:pb-8 '>
         {
           todoItems && todoItems.map(eachTodoItems =>(
             <TodoList key={eachTodoItems.id} todoDetails={eachTodoItems}/>

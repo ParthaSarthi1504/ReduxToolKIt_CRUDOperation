@@ -30,28 +30,28 @@ const TodoList = (props)=>{
     })
 
     return(
-        <li className={`w-[1000px] h-[45px] bg-slate-100 shadow-lg shadow-slate-400  p-5 mt-5  flex justify-between items-center rounded-md ease-out duration-300 ${todoDetails.edit && "bg-slate-300 shadow-md shadow-slate-400  w-[1050px] h-[60px]"} linear-animation ${deleteTodoAnimation}`} >
+        <li className={`w-[80%] h-[30px] p-3 mt-4 bg-slate-100 shadow-lg shadow-slate-400 flex justify-between items-center rounded-sm ease-out duration-300 sm:w-[70%] sm:h-[30px] lg:w-[80%] lg:h-[43px] lg:p-5 lg:mt-5 lg:rounded-md xl:w-[60%] xl:h-[45px] xl:p-5 xl:mt-5 ${todoDetails.edit && "h-[45px] bg-slate-300 pr-4 pl-4 shadow-md shadow-slate-400 sm:h-[50px] sm:pr-5 sm:pl-5 lg:h-[60px] lg:pr-7 lg:pl-7 xl:w-[60%] xl:h-[60px] xl:text-[25px] xl:pr-8 xl:pl-7"} linear-animation ${deleteTodoAnimation}`} >
             {
                 todoDetails.edit ?(
                     <>
-                        <input type='text' value={input}  onChange={(e)=>setInput(e.target.value)} className='ease-out duration-300 text-[20px] font-semibold text-black w-[400px] h-[35px] border-none outline-none bg-white pl-3 rounded-md' autoFocus/>
-                        <div className='flex  items-center'>
-                            <button className="bg-green-500 ease-out duration-300 text-white font-semibold h-[33px] w-[33px] flex justify-center items-center rounded mr-9"  onClick={()=>dispatch(updateTodo({todoId:todoDetails.id,updatedText:input}))}>
-                                <TiTick className='ease-out duration-300 w-[30px] h-[27px]'/>
+                        <input type='text' value={input}  onChange={(e)=>setInput(e.target.value)} className='ease-out duration-300 text-[18px] w-[50%] h-[27px] pl-1 font-semibold border-none outline-none bg-white rounded-sm sm:w-[50%] sm:h-[30px] sm:text-[18px] sm:pl-2  lg:text-[24px] lg:w-[60%] lg:h-[40px] lg:pl-3 xl:text-[23px] xl:w-[400px] xl:h-[37px] xl:pl-3 2xl:rounded-md' autoFocus/>
+                        <div className='flex items-center'>
+                            <button className="ease-out duration-30 text-[22px] h-[25px] w-[25px] text-green-800 font-semibold flex justify-center items-center rounded mr-5 sm:h-[28px] sm:w-[28px] sm:mr-6  md:mr-9 lg:h-[33px] lg:w-[33px] lg:text-[28px] lg:font-semibold lg:mr-8 xl:text-white xl:h-[33px] xl:w-[33px] xl:text-[26px] xl:font-semibold xl:bg-green-500 xl:mr-10 2xl:mr-10"  onClick={()=>dispatch(updateTodo({todoId:todoDetails.id,updatedText:input}))}>
+                                <TiTick className='ease-out duration-300'/>
                             </button>
-                            <button className="bg-red-600 ease-out duration-300 text-white font-semibold h-[33px] w-[33px] flex justify-center items-center rounded" onClick={UpdatationCancel}>
-                                <ImCross className='ease-out duration-300 w-[15px] h-[15px]'/>
+                            <button className="ease-out duration-300 text-[13px] text-red-800 font-semibold h-[25px] w-[25px] flex justify-center items-center rounded sm:h-[28px] sm:w-[28px] lg:w-[33px] lg:text-[16px] lg:font-semibold xl:bg-red-600 xl:text-white xl:h-[33px] xl:w-[33px] xl:text-[14px]" onClick={UpdatationCancel}>
+                                <ImCross className='ease-out duration-300'/>
                             </button>
                         </div>
                     </>
                 ):(
                     <>
-                        <p className="text-[20px] font-semibold text-black ease-out duration-300">{todoDetails.todoText}</p>
+                        <p className="text-[16px] font-semibold text-black ease-out duration-300 sm:text-[15px] lg:text-[20px]">{todoDetails.todoText}</p>
                         <div className='flex  items-center'>
-                            <button className="bg-green-500 ease-out duration-300 text-white font-semibold  text-[15px]  h-[30px] w-[30px] flex justify-center items-center rounded mr-9"  onClick={()=>dispatch(editTodo(todoDetails.id))}>
+                            <button className="ease-out duration-300  font-extrabold text-[16px] text-green-800 h-[22px] w-[22px] flex justify-center items-center rounded mr-5 sm:h-[25px] sm:w-[25px] sm:mr-6 lg:text-[20px] xl:text-[16px] xl:h-[30px] xl:w-[30px] xl:bg-green-500 xl:text-white 2xl:mr-8"  onClick={()=>dispatch(editTodo(todoDetails.id))}>
                                 <BiSolidEditAlt className='ease-out duration-300'/>
                             </button>
-                            <button className="bg-red-600 ease-out duration-300 text-white font-semibold  text-[15px]  h-[30px] w-[30px] flex justify-center items-center rounded" onClick={deletingTodo}>
+                            <button className="ease-out duration-300 font-extrabold  text-[16px] text-red-800 h-[22px] w-[22px] flex justify-center items-center rounded sm:h-[25px] sm:w-[25px] lg:text-[20px] lg:h-[28px] lg:w-[28px] xl:text-[16px] xl:h-[30px] xl:w-[30px] xl:bg-red-600 xl:text-white" onClick={deletingTodo}>
                                 <MdDelete className='ease-out duration-300'/>
                             </button>
                         </div>
