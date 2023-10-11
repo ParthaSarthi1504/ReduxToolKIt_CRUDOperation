@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ReduxToolKIt_CRUDOperation/static/css/main.793dfe04.css",
-    "main.js": "/ReduxToolKIt_CRUDOperation/static/js/main.345c3693.js",
+    "main.css": "/ReduxToolKIt_CRUDOperation/static/css/main.e2b63c78.css",
+    "main.js": "/ReduxToolKIt_CRUDOperation/static/js/main.870df4ff.js",
     "static/js/787.5e676c17.chunk.js": "/ReduxToolKIt_CRUDOperation/static/js/787.5e676c17.chunk.js",
     "index.html": "/ReduxToolKIt_CRUDOperation/index.html",
-    "main.793dfe04.css.map": "/ReduxToolKIt_CRUDOperation/static/css/main.793dfe04.css.map",
-    "main.345c3693.js.map": "/ReduxToolKIt_CRUDOperation/static/js/main.345c3693.js.map",
+    "main.e2b63c78.css.map": "/ReduxToolKIt_CRUDOperation/static/css/main.e2b63c78.css.map",
+    "main.870df4ff.js.map": "/ReduxToolKIt_CRUDOperation/static/js/main.870df4ff.js.map",
     "787.5e676c17.chunk.js.map": "/ReduxToolKIt_CRUDOperation/static/js/787.5e676c17.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.793dfe04.css",
-    "static/js/main.345c3693.js"
+    "static/css/main.e2b63c78.css",
+    "static/js/main.870df4ff.js"
   ]
 }
