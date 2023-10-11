@@ -8,7 +8,6 @@ const App = () =>{
   let dispatch = useDispatch();
   let [inputTodo, setInputTodo] = useState('');
   let todoItems = useSelector((state) => state.todos);
-  console.log(todoItems);
   const AddingTodo = ()=>{
     if (inputTodo !== ''){
       dispatch(addTodo(inputTodo));
@@ -23,7 +22,7 @@ const App = () =>{
   },[todoItems])
 
   return(
-    <div className="min-h-full flex flex-col items-center font-mono">
+    <div className="min-h-screen flex flex-col items-center font-mono">
       <h1 className='font-bold text-[20px] m-[20px] sm:text-[25px] lg:text-[30px] 2xl:text-[30px]'>Todos Application</h1>
       <div className='flex justify-center items-center flex-wrap w-[100%]'>
         <input type='text' placeholder='Add Something...' className='w-[80%] h-[40px] pl-3 text-[17px] bg-slate-100 border-gray-200  border-1 rounded outline-none m-3 text-black shadow-lg shadow-indigo-500/50 sm:w-[350px] sm:h-[30px] sm:text-[15px] sm:pl-1 lg:w-[50%] lg:h-[43px] lg:text-[22px] lg:pl-3 2xl:w-[600px] 2xl:h-[40px] 2xl:pl-3' value={inputTodo} onChange={(e)=>setInputTodo(e.target.value)}/>
@@ -32,9 +31,11 @@ const App = () =>{
       </div>
       <ul className='mt-3 pb-5 w-[100%] flex flex-col items-center duration-[300ms] sm:mt-4 sm:mb-4 md:mt-6 md:pb-[7] lg:mt-8 lg:pb-8 '>
         {
-          todoItems && todoItems.map(eachTodoItems =>(
+          todoItems.length >0 ? todoItems.map(eachTodoItems =>(
             <TodoList key={eachTodoItems.id} todoDetails={eachTodoItems}/>
-          ))
+          )):(
+            <p className='mt-20 text-[17px] text-gray-500  font-medium md:text-[20px] md:mt-36 xl:mt-56'>Your Todo List is Empty...</p>
+          )
         }
       </ul>
     </div>
