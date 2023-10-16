@@ -1,16 +1,21 @@
 import './App.css';
 import { useState, memo, useEffect} from 'react';
 import { useDispatch ,useSelector} from 'react-redux';
-import { addTodo } from './Slicer/TodoSlicer';
+import { getTodosFromServer,addTodosToServer } from './Slicer/TodoSlicer';
 import TodoList from './components/TotoList'
+import {nanoid } from "@reduxjs/toolkit";
 
 const App = () =>{
   let dispatch = useDispatch();
   let [inputTodo, setInputTodo] = useState('');
   let todoItems = useSelector((state) => state.todos);
+  let ErrorMessage = useSelector((state)=> state.errMsg);
+  // console.log(todoItems);
   const AddingTodo = ()=>{
     if (inputTodo !== ''){
-      dispatch(addTodo(inputTodo));
+      dispatch(addTodosToServer({id: nanoid(),
+        todoText: inputTodo,
+        edit: false}));
       setInputTodo('');
     }else{
       alert('The input box is Empty')
@@ -18,8 +23,9 @@ const App = () =>{
   }
   // storing todoList into lovcal storage
   useEffect(()=>{
-    localStorage.setItem("yourTodos",JSON.stringify(todoItems));
-  },[todoItems])
+    // localStorage.setItem("yourTodos",JSON.stringify(todoItems));
+    dispatch(getTodosFromServer())
+  },[dispatch])
 
   return(
     <div className="min-h-screen flex flex-col items-center font-mono">
@@ -29,6 +35,9 @@ const App = () =>{
         <button className=' hidden bg-blue-600 text-white font-semibold text-[17px] w-[90px] h-[43px] rounded ml-5 sm:hidden lg:flex lg:justify-center lg:items-center ' onClick={AddingTodo}>Add Todo</button>
         <button className='bg-blue-600 text-white text-[30px] font-extrabold  h-[40px] w-[40px] m-3 flex justify-center items-center rounded sm:h-[30px] sm:w-[30px] sm:text-[30px] lg:hidden lg:w-[80px]' onClick={AddingTodo}>+</button>
       </div>
+      {
+        ErrorMessage !== '' && <p className='text-red-500 mt-5 text-[16px] font-semibold ease-out duration-300 sm:text-[15px] lg:text-[20px]'>{ErrorMessage}</p>
+      }
       <ul className='mt-3 pb-5 w-[100%] flex flex-col items-center duration-[300ms] sm:mt-4 sm:mb-4 md:mt-6 md:pb-[7] lg:mt-8 lg:pb-8 '>
         {
           todoItems.length >0 ? todoItems.map(eachTodoItems =>(

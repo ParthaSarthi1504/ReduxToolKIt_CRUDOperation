@@ -1,7 +1,7 @@
 import {memo, useEffect} from 'react'
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { removeTodo,editTodo,updateTodo,cancelTodoUpdate } from "../Slicer/TodoSlicer";
+import { removeTodo,editTodo,cancelTodoUpdate,updateTodosToServer,deleteTodosFromServer } from "../Slicer/TodoSlicer";
 import { BiSolidEditAlt } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
@@ -23,7 +23,8 @@ const TodoList = (props)=>{
         let deleteTimeOutId = '';
         if (deleteTodoAnimation !== ''){
             deleteTimeOutId= setTimeout(()=>{
-                dispatch(removeTodo(todoDetails.id))
+                dispatch(deleteTodosFromServer(todoDetails.id))
+                    .then(()=>dispatch(removeTodo(todoDetails.id)))
             },500) 
         }
         return ()=> clearTimeout(deleteTimeOutId)
@@ -36,7 +37,7 @@ const TodoList = (props)=>{
                     <>
                         <input type='text' value={input}  onChange={(e)=>setInput(e.target.value)} className='ease-out duration-300 text-[18px] w-[50%] h-[27px] pl-1 font-semibold border-none outline-none bg-white rounded-sm sm:w-[50%] sm:h-[30px] sm:text-[18px] sm:pl-2  lg:text-[24px] lg:w-[60%] lg:h-[40px] lg:pl-3 xl:text-[23px] xl:w-[400px] xl:h-[37px] xl:pl-3 2xl:rounded-md' autoFocus/>
                         <div className='flex items-center'>
-                            <button className="ease-out duration-30 text-[22px] h-[25px] w-[25px] text-green-800 font-semibold flex justify-center items-center rounded mr-5 sm:h-[28px] sm:w-[28px] sm:mr-6  md:mr-9 lg:h-[33px] lg:w-[33px] lg:text-[28px] lg:font-semibold lg:mr-8 xl:text-white xl:h-[33px] xl:w-[33px] xl:text-[26px] xl:font-semibold xl:bg-green-500 xl:mr-10 2xl:mr-10"  onClick={()=>dispatch(updateTodo({todoId:todoDetails.id,updatedText:input}))}>
+                            <button className="ease-out duration-30 text-[22px] h-[25px] w-[25px] text-green-800 font-semibold flex justify-center items-center rounded mr-5 sm:h-[28px] sm:w-[28px] sm:mr-6  md:mr-9 lg:h-[33px] lg:w-[33px] lg:text-[28px] lg:font-semibold lg:mr-8 xl:text-white xl:h-[33px] xl:w-[33px] xl:text-[26px] xl:font-semibold xl:bg-green-500 xl:mr-10 2xl:mr-10"  onClick={()=>dispatch(updateTodosToServer({id:todoDetails.id,todoText:input,edit:false}))}>
                                 <TiTick className='ease-out duration-300'/>
                             </button>
                             <button className="ease-out duration-300 text-[13px] text-red-800 font-semibold h-[25px] w-[25px] flex justify-center items-center rounded sm:h-[28px] sm:w-[28px] lg:w-[33px] lg:text-[16px] lg:font-semibold xl:bg-red-600 xl:text-white xl:h-[33px] xl:w-[33px] xl:text-[14px]" onClick={UpdatationCancel}>
